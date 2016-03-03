@@ -1,0 +1,20 @@
+Feature: Appstore works
+
+Scenario: appstore can be started and contains default users
+   When appstore is started
+   Then appstore is running
+    And user admin exists
+    And user guest exists
+
+Scenario: users can log in
+   Given appstore is running
+     And user <user> exists 
+   When user <user> logs in
+   Then user <user> is logged in
+
+Scenario: users can download apps
+   Given appstore is running
+     And application <app> exists
+     And user <user> is logged in 
+   When user <user> tries to download application <app>
+   Then user <user> downloaded application <app>
